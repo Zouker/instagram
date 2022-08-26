@@ -102,7 +102,7 @@ type DataType = {
 
 export default function App() {
     const renderStories: ListRenderItem<DataType> = ({item}) => {
-        return <View key={item.id} style={{marginLeft: 10, paddingLeft: 3, paddingRight: 3}}>
+        return <View key={item.id} style={styles.header}>
             <Image source={item.src} style={styles.story}/>
             <Text style={{textAlign: 'center'}}>{item.title}</Text>
         </View>
@@ -111,7 +111,7 @@ export default function App() {
     const renderContent: ListRenderItem<DataType> = ({item}) => {
         return <View style={styles.item} key={item.id}>
             <Text style={{fontWeight: 'bold'}}>{item.title}</Text>
-            <Image source={item.src} style={{width: '100%', height: 400}}/>
+            <Image source={item.src} style={styles.image}/>
             <Text style={{fontWeight: 'bold'}}>{item.title}</Text>
             <Text>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto beatae consequatur dicta, earum
                 explicabo maxime, nisi nostrum porro quibusdam quisquam, quo reiciendis sed sequi? Dicta facilis maxime
@@ -122,7 +122,7 @@ export default function App() {
 
     return (
         <View style={styles.container}>
-            <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', width: 390}}>
+            <View style={styles.stories}>
                 <View style={{flexDirection: 'row'}}>
                     <Image source={require('./assets/img/logo.png')} style={{width: 140, height: 50}}/>
                     <TouchableOpacity>
@@ -146,7 +146,7 @@ export default function App() {
                 renderItem={renderContent}
                 showsVerticalScrollIndicator={false}
             />
-            <View style={{flexDirection: 'row', justifyContent: 'space-between', padding: 10}}>
+            <View style={styles.footer}>
                 <TouchableOpacity style={{flex: 1}}>
                     <MaterialCommunityIcons name="home-variant" size={40} color="black"/>
                 </TouchableOpacity>
@@ -161,7 +161,7 @@ export default function App() {
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <Image source={require('./assets/img/ava1.jpg')}
-                           style={{width: 40, height: 40, borderRadius: 50, backgroundColor: 'black'}}/>
+                           style={styles.user}/>
                 </TouchableOpacity>
             </View>
             <StatusBar style="auto"/>
@@ -170,18 +170,10 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: 50,
-    },
-    item: {
-        width: 405,
-        height: 505,
-        padding: 5,
-        margin: 5,
+    header: {
+        marginLeft: 10,
+        paddingLeft: 3,
+        paddingRight: 3
     },
     story: {
         width: 70,
@@ -191,5 +183,38 @@ const styles = StyleSheet.create({
         margin: 0,
         borderRadius: 50,
         borderStyle: 'solid',
+    },
+    item: {
+        width: '100%',
+        height: 505,
+        margin: 5,
+    },
+    image: {
+        width: '100%',
+        height: 400
+    },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 50,
+    },
+    stories: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        width: 390
+    },
+    user: {
+        width: 40,
+        height: 40,
+        borderRadius: 50,
+        backgroundColor: 'black'
+    },
+    footer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        padding: 10
     }
 });
